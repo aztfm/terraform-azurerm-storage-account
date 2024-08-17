@@ -7,8 +7,13 @@ ENHANCEMENTS:
 
 - 
 
+-->
+
 FEATURES:
 
-- **New Parameter**: ``
-
--->
+- **New Parameter**: `name`
+- **New Parameter**: `resource_group_name`
+- **New Parameter**: `location`
+- **New Parameter**: `tags`
+- **New Parameter**: `account_tier`
+- **New Parameter**: `account_replication_type`
