@@ -70,7 +70,7 @@ run "apply" {
   }
 
   assert {
-    condition     = azurerm_storage_account.main.id == "${run.setup.resource_group_id}/providers/Microsoft.Storage/storageAccounts/${run.setup.workspace_id}"
+    condition     = azurerm_storage_account.main.id == "${run.setup.resource_group_id}/providers/Microsoft.Storage/storageAccounts/${substr(replace(run.setup.workspace_id, "-", ""), 0, 24)}"
     error_message = "The Storage Account ID is not as expected."
   }
 
