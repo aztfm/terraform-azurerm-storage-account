@@ -1,6 +1,11 @@
 variable "name" {
   type        = string
   description = "The name of the Storage Account."
+
+  validation {
+    condition     = can(regex("^[a-z0-9]{3,24}$", var.name))
+    error_message = "The name must be between 3 and 24 characters long and consist only of lowercase letters and numbers."
+  }
 }
 
 variable "resource_group_name" {
