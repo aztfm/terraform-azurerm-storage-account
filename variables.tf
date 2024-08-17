@@ -29,6 +29,22 @@ variable "account_tier" {
   }
 }
 
+variable "account_kind" {
+  type        = string
+  description = "Defines the Kind to use for this storage account. Valid options are `Storage`, `StorageV2`, `BlobStorage`, `FileStorage`, `BlockBlobStorage`."
+  default     = "StorageV2"
+
+  validation {
+    condition     = contains(["Storage", "StorageV2", "BlobStorage", "FileStorage", "BlockBlobStorage"], var.account_kind)
+    error_message = "The account kind must be one of Storage, StorageV2, BlobStorage, FileStorage, BlockBlobStorage."
+  }
+
+  validation {
+    condition     = contains(["FileStorage", "BlockBlobStorage"], var.account_kind) ? var.account_tier == "Premium" : true
+    error_message = "FileStorage and BlockBlobStorage account kinds require Premium tier."
+  }
+}
+
 variable "account_replication_type" {
   type        = string
   description = "Defines the type of replication to use for this storage account. Valid options are `LRS`, `GRS`, `RAGRS`, `ZRS`, `GZRS` and `RAGZRS`. Changing this forces a new resource to be created when types `LRS`, `GRS` and `RAGRS` are changed to `ZRS`, `GZRS` or `RAGZRS` and vice versa."

@@ -45,6 +45,7 @@ The module supports the next parameters:
 |location|The location/region where the Storage Account is created.|`string`|n/a|yes|
 |tags|A mapping of tags to assign to the resource.|`map(string)`|`{}`|no|
 |account\_tier|Defines the Tier to use for this storage account. Valid options are `Standard` and `Premium`.|`string`|n/a|yes|
+|account\_kind|Defines the Kind to use for this storage account. Valid options are `Storage`, `StorageV2`, `BlobStorage`, `FileStorage`, `BlockBlobStorage`.|`string`|`"StorageV2"`|no|
 |account\_replication\_type|Defines the type of replication to use for this storage account. Valid options are `LRS`, `GRS`, `RAGRS`, `ZRS`, `GZRS` and `RAGZRS`. Changing this forces a new resource to be created when types `LRS`, `GRS` and `RAGRS` are changed to `ZRS`, `GZRS` or `RAGZRS` and vice versa.|`string`|n/a|yes|
 
 `example1` supports the next parameters:
@@ -65,4 +66,9 @@ The module supports the next outputs:
 
 | Name | Description | Sensitive |
 | ---- | ----------- | :-------: |
+|id|The ID of the Storage Account.|no|
+|name|The name of the Storage Account.|no|
+|resource_group_name|The resource group name of the Storage Account.|no|
+|location|The location of the Storage Account.|no|
+|tags|The tags of the Storage Account.|no|
 <!-- END_TF_DOCS -->
