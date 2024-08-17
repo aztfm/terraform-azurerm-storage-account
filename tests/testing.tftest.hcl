@@ -17,14 +17,14 @@ run "plan" {
   command = plan
 
   variables {
-    name                = substr(run.setup.workspace_id, 0, 23)
+    name                = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
     resource_group_name = run.setup.resource_group_name
     location            = run.setup.resource_group_location
     tags                = run.setup.resource_group_tags
   }
 
   assert {
-    condition     = azurerm_storage_account.main.name == substr(run.setup.workspace_id, 0, 23)
+    condition     = azurerm_storage_account.main.name == substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
     error_message = "The Storage Account name input variable is being modified."
   }
 
@@ -63,7 +63,7 @@ run "apply" {
   command = apply
 
   variables {
-    name                = substr(run.setup.workspace_id, 0, 23)
+    name                = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
     resource_group_name = run.setup.resource_group_name
     location            = run.setup.resource_group_location
     tags                = run.setup.resource_group_tags
