@@ -60,6 +60,12 @@ variable "account_replication_type" {
   }
 }
 
+variable "https_traffic_only_enabled" {
+  type        = bool
+  description = "Allows https traffic only to storage service if set to true."
+  default     = false
+}
+
 variable "public_network_access_enabled" {
   type        = bool
   description = "Controls whether data on the public internet is allowed to be read or written to the storage account."

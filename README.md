@@ -47,6 +47,7 @@ The module supports the next parameters:
 |account\_tier|Defines the Tier to use for this storage account. Valid options are `Standard` and `Premium`.|`string`|n/a|yes|
 |account\_kind|Defines the Kind to use for this storage account. Valid options are `Storage`, `StorageV2`, `BlobStorage`, `FileStorage`, `BlockBlobStorage`.|`string`|`"StorageV2"`|no|
 |account\_replication\_type|Defines the type of replication to use for this storage account. Valid options are `LRS`, `GRS`, `RAGRS`, `ZRS`, `GZRS` and `RAGZRS`. Changing this forces a new resource to be created when types `LRS`, `GRS` and `RAGRS` are changed to `ZRS`, `GZRS` or `RAGZRS` and vice versa.|`string`|n/a|yes|
+|https\_traffic\_only\_enabled|Allows https traffic only to storage service if set to true.|`bool`|`false`|no|
 |public\_network\_access\_enabled|Controls whether data on the public internet is allowed to be read or written to the storage account.|`bool`|`true`|no|
 
 `example1` supports the next parameters:

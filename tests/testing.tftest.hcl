@@ -9,8 +9,9 @@ run "setup" {
 }
 
 variables {
-  account_tier             = "Standard"
-  account_replication_type = "ZRS"
+  account_tier               = "Standard"
+  account_replication_type   = "ZRS"
+  https_traffic_only_enabled = true
 }
 
 run "plan" {
@@ -57,6 +58,11 @@ run "plan" {
   assert {
     condition     = azurerm_storage_account.main.account_replication_type == var.account_replication_type
     error_message = "The Storage Account replication type input variable is being modified."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.https_traffic_only_enabled == var.https_traffic_only_enabled
+    error_message = "The Storage Account https traffic only enabled input variable is being modified."
   }
 
   assert {
