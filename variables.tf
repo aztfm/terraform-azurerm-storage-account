@@ -59,3 +59,9 @@ variable "account_replication_type" {
     error_message = "The replication type must be one of LRS, ZRS, GZRS, RAGZRS, GRS, RAGRS."
   }
 }
+
+variable "public_network_access_enabled" {
+  type        = bool
+  description = "Controls whether data on the public internet is allowed to be read or written to the storage account."
+  default     = true
+}

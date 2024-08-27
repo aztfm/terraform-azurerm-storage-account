@@ -17,10 +17,11 @@ run "plan" {
   command = plan
 
   variables {
-    name                = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
-    resource_group_name = run.setup.resource_group_name
-    location            = run.setup.resource_group_location
-    tags                = run.setup.resource_group_tags
+    name                          = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
+    resource_group_name           = run.setup.resource_group_name
+    location                      = run.setup.resource_group_location
+    tags                          = run.setup.resource_group_tags
+    public_network_access_enabled = true
   }
 
   assert {
@@ -56,6 +57,11 @@ run "plan" {
   assert {
     condition     = azurerm_storage_account.main.account_replication_type == var.account_replication_type
     error_message = "The Storage Account replication type input variable is being modified."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.public_network_access_enabled == true
+    error_message = "The Storage Account public network access enabled input variable is being modified."
   }
 }
 

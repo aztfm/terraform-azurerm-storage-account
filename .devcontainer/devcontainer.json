@@ -26,6 +26,7 @@
                 "DavidAnson.vscode-markdownlint",
                 "GitHub.vscode-github-actions",
                 "GitHub.vscode-pull-request-github",
+                "hashicorp.hcl",
                 "hashicorp.terraform",
                 "streetsidesoftware.code-spell-checker",
                 "TylerHarris.terraform-link-docs",
