@@ -10,7 +10,7 @@
 
 | Module version | Terraform version | hashicorp/azurerm version|
 | -------------- | ----------------- | ------------------------ |
-| >= 1.0.0       | >= 1.9.x          | ~>3.0                    |
+| >= 1.0.0       | >= 1.9.x          | ~>4.0                    |
 
 ## :memo: Usage
 
