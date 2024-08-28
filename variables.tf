@@ -63,7 +63,7 @@ variable "account_replication_type" {
 variable "https_traffic_only_enabled" {
   type        = bool
   description = "Allows https traffic only to storage service if set to true."
-  default     = false
+  default     = true
 }
 
 variable "min_tls_version" {
