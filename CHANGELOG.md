@@ -17,3 +17,6 @@ FEATURES:
 - **New Parameter**: `tags`
 - **New Parameter**: `account_tier`
 - **New Parameter**: `account_replication_type`
+- **New Parameter**: `https_traffic_only_enabled`
+- **New Parameter**: `min_tls_version`
+- **New Parameter**: `public_network_access_enabled`
