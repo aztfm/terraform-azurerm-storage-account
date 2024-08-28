@@ -66,6 +66,11 @@ run "plan" {
   }
 
   assert {
+    condition     = azurerm_storage_account.main.min_tls_version == "TLS1_2"
+    error_message = "The Storage Account min TLS version input variable is being modified."
+  }
+
+  assert {
     condition     = azurerm_storage_account.main.public_network_access_enabled == true
     error_message = "The Storage Account public network access enabled input variable is being modified."
   }

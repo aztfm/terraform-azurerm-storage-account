@@ -66,6 +66,17 @@ variable "https_traffic_only_enabled" {
   default     = false
 }
 
+variable "min_tls_version" {
+  type        = string
+  description = "The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`."
+  default     = "TLS1_2"
+
+  validation {
+    condition     = contains(["TLS1_0", "TLS1_1", "TLS1_2"], var.min_tls_version)
+    error_message = "The minimum TLS version must be one of TLS1_0, TLS1_1, TLS1_2."
+  }
+}
+
 variable "public_network_access_enabled" {
   type        = bool
   description = "Controls whether data on the public internet is allowed to be read or written to the storage account."
