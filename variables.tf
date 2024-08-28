@@ -59,3 +59,26 @@ variable "account_replication_type" {
     error_message = "The replication type must be one of LRS, ZRS, GZRS, RAGZRS, GRS, RAGRS."
   }
 }
+
+variable "https_traffic_only_enabled" {
+  type        = bool
+  description = "Allows https traffic only to storage service if set to true."
+  default     = true
+}
+
+variable "min_tls_version" {
+  type        = string
+  description = "The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`."
+  default     = "TLS1_2"
+
+  validation {
+    condition     = contains(["TLS1_0", "TLS1_1", "TLS1_2"], var.min_tls_version)
+    error_message = "The minimum TLS version must be one of TLS1_0, TLS1_1, TLS1_2."
+  }
+}
+
+variable "public_network_access_enabled" {
+  type        = bool
+  description = "Controls whether data on the public internet is allowed to be read or written to the storage account."
+  default     = true
+}

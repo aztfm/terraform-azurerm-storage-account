@@ -1,14 +1,6 @@
 <!-- markdownlint-disable MD041 -->
 ## 1.0.0 (XXXXXX XX, 20XX)
 
-<!-- 
-
-ENHANCEMENTS:
-
-- 
-
--->
-
 FEATURES:
 
 - **New Parameter**: `name`
@@ -17,3 +9,6 @@ FEATURES:
 - **New Parameter**: `tags`
 - **New Parameter**: `account_tier`
 - **New Parameter**: `account_replication_type`
+- **New Parameter**: `https_traffic_only_enabled`
+- **New Parameter**: `min_tls_version`
+- **New Parameter**: `public_network_access_enabled`

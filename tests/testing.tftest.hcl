@@ -9,18 +9,20 @@ run "setup" {
 }
 
 variables {
-  account_tier             = "Standard"
-  account_replication_type = "ZRS"
+  account_tier               = "Standard"
+  account_replication_type   = "ZRS"
+  https_traffic_only_enabled = true
 }
 
 run "plan" {
   command = plan
 
   variables {
-    name                = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
-    resource_group_name = run.setup.resource_group_name
-    location            = run.setup.resource_group_location
-    tags                = run.setup.resource_group_tags
+    name                          = substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
+    resource_group_name           = run.setup.resource_group_name
+    location                      = run.setup.resource_group_location
+    tags                          = run.setup.resource_group_tags
+    public_network_access_enabled = true
   }
 
   assert {
@@ -56,6 +58,21 @@ run "plan" {
   assert {
     condition     = azurerm_storage_account.main.account_replication_type == var.account_replication_type
     error_message = "The Storage Account replication type input variable is being modified."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.https_traffic_only_enabled == var.https_traffic_only_enabled
+    error_message = "The Storage Account https traffic only enabled input variable is being modified."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.min_tls_version == "TLS1_2"
+    error_message = "The Storage Account min TLS version input variable is being modified."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.public_network_access_enabled == true
+    error_message = "The Storage Account public network access enabled input variable is being modified."
   }
 }
 
