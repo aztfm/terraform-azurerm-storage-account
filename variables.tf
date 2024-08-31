@@ -82,3 +82,16 @@ variable "public_network_access_enabled" {
   description = "Controls whether data on the public internet is allowed to be read or written to the storage account."
   default     = true
 }
+
+variable "containers" {
+  type = list(object({
+    name                  = string
+    container_access_type = optional(string, "private")
+  }))
+  description = "A list of containers to create within the Storage Account."
+
+  validation {
+    condition     = alltrue([for container in var.containers : contains(["private", "blob", "container"], container.container_access_type)])
+    error_message = "The container access type must be one of private, blob, container."
+  }
+}
