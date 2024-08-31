@@ -1,0 +1,22 @@
+[
+    {
+        "Name": "name",
+        "Description": "The name of the Container which should be created within the Storage Account",
+        "Type": "string",
+        "Default": "n/a",
+        "Required": "yes",
+        "Support": []
+    },
+    {
+        "Name": "container_access_type",
+        "Description": "The Access Level configured for this Container. Possible values are",
+        "Type": "string",
+        "Default": "private",
+        "Required": "no",
+        "Support": [
+            "blob",
+            "container",
+            "private"
+        ]
+    }
+]

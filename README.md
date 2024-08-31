@@ -39,7 +39,7 @@ Reference to more [examples](https://github.com/aztfm/terraform-azurerm-storage-
 The module supports the next parameters:
 
 | Name | Description | Type | Default | Required |
-| ------ | ----------- | :--: | :---------------: | :-------: |
+| ---- | ----------- | :--: | :-----: | :------: |
 |name|The name of the Storage Account.|`string`|n/a|yes|
 |resource\_group\_name|The name of the resource group in which to create the Storage Account.|`string`|n/a|yes|
 |location|The location/region where the Storage Account is created.|`string`|n/a|yes|
@@ -50,18 +50,14 @@ The module supports the next parameters:
 |https\_traffic\_only\_enabled|Allows https traffic only to storage service if set to true.|`bool`|`true`|no|
 |min\_tls\_version|The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`.|`string`|`"TLS1_2"`|no|
 |public\_network\_access\_enabled|Controls whether data on the public internet is allowed to be read or written to the storage account.|`bool`|`true`|no|
+|containers|A list of containers to create within the Storage Account.|`list(object({}))`|n/a|yes|
 
-`example1` supports the next parameters:
-
-| Name | Description | Type | Default | Required |
-| ---- | ----------- | :--: | :-----: | :------: |
-|example||`string`|n/a|yes|
-
-`example2` supports the next parameters:
+The `containers` supports the next parameters:
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | :--: | :-----: | :------: |
-|example||`string`|n/a|yes|
+|name|The name of the Container which should be created within the Storage Account|`string`|n/a|yes|
+|container\_access\_type|The Access Level configured for this Container. Possible values are `blob`, `container` and `private`.|`string`|`private`|no|
 
 ## :arrow_backward: Outputs
 

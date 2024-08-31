@@ -12,7 +12,7 @@ output:
   mode: inject
 
 content: |
-  {{ define "table" }}{{ printf "`%s` supports the next parameters:" .Resource }}
+  {{ define "table" }}{{ printf "The `%s` supports the next parameters:" .Resource }}
 
   | Name | Description | Type | Default | Required |
   | ---- | ----------- | :--: | :-----: | :------: |
@@ -36,7 +36,7 @@ content: |
   The module supports the next parameters:
 
   | Name | Description | Type | Default | Required |
-  | ------ | ----------- | :--: | :---------------: | :-------: |
+  | ---- | ----------- | :--: | :-----: | :------: |
   {{ range .Module.Inputs -}}
     {{ print "|" (.Name | sanitizeMarkdownTbl) -}}
     {{ print "|" (toString .Description | sanitizeMarkdownTbl) -}}
@@ -48,8 +48,7 @@ content: |
     {{ print "|" (ternary .Required "yes" "no") "|" }}
   {{ end }}{{ printf "\n" -}}
 
-  {{ template "table" dict "Resource" "example1" "File" ".config/example_parameters.json" }}
-  {{ template "table" dict "Resource" "example2" "File" ".config/example_parameters.json" }}{{ printf "\n" -}}
+  {{ template "table" dict "Resource" "containers" "File" ".config/container_parameters.json" }}{{ printf "\n" -}}
 
   ## :arrow_backward: Outputs
 
