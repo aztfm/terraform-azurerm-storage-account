@@ -50,7 +50,7 @@ The module supports the next parameters:
 |https\_traffic\_only\_enabled|Allows https traffic only to storage service if set to true.|`bool`|`true`|no|
 |min\_tls\_version|The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`.|`string`|`"TLS1_2"`|no|
 |public\_network\_access\_enabled|Controls whether data on the public internet is allowed to be read or written to the storage account.|`bool`|`true`|no|
-|containers|A list of containers to create within the Storage Account.|`list(object({}))`|n/a|yes|
+|containers|A list of containers to create within the Storage Account.|`list(object({}))`|`[]`|no|
 
 The `containers` supports the next parameters:
 
@@ -70,4 +70,5 @@ The module supports the next outputs:
 |resource_group_name|The resource group name of the Storage Account.|no|
 |location|The location of the Storage Account.|no|
 |tags|The tags of the Storage Account.|no|
+|containers|The containers within the Storage Account.|no|
 <!-- END_TF_DOCS -->

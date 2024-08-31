@@ -89,6 +89,7 @@ variable "containers" {
     container_access_type = optional(string, "private")
   }))
   description = "A list of containers to create within the Storage Account."
+  default     = []
 
   validation {
     condition     = alltrue([for container in var.containers : contains(["private", "blob", "container"], container.container_access_type)])
