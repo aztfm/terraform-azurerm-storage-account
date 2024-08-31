@@ -12,6 +12,13 @@ variables {
   account_tier               = "Standard"
   account_replication_type   = "ZRS"
   https_traffic_only_enabled = true
+  containers = [{
+    name                  = "container1"
+    container_access_type = "private"
+    }, {
+    name                  = "container2"
+    container_access_type = "blob"
+  }]
 }
 
 run "plan" {
@@ -74,6 +81,31 @@ run "plan" {
     condition     = azurerm_storage_account.main.public_network_access_enabled == true
     error_message = "The Storage Account public network access enabled input variable is being modified."
   }
+
+  assert {
+    condition     = length(azurerm_storage_container.containers) == length(var.containers)
+    error_message = "The number of Storage Account containers input variables is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[0].name].name == var.containers[0].name
+    error_message = "The name of the first container is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[0].name].container_access_type == var.containers[0].container_access_type
+    error_message = "The access type of the first container is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[1].name].name == var.containers[1].name
+    error_message = "The name of the second container is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[1].name].container_access_type == var.containers[1].container_access_type
+    error_message = "The access type of the second container is not as expected."
+  }
 }
 
 run "apply" {
@@ -114,5 +146,10 @@ run "apply" {
   assert {
     condition     = output.tags == azurerm_storage_account.main.tags
     error_message = "The Storage Account tags output is not as expected."
+  }
+
+  assert {
+    condition     = output.containers == azurerm_storage_container.containers
+    error_message = "The Storage Account containers output is not as expected."
   }
 }

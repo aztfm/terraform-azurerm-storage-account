@@ -12,3 +12,6 @@ FEATURES:
 - **New Parameter**: `https_traffic_only_enabled`
 - **New Parameter**: `min_tls_version`
 - **New Parameter**: `public_network_access_enabled`
+- **New Parameter**: `containers`
+- **New Parameter**: `containers.name`
+- **New Parameter**: `containers.container_access_type`

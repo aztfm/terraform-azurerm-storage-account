@@ -22,3 +22,9 @@ output "tags" {
   value       = azurerm_storage_account.main.tags
   description = "The tags of the Storage Account."
 }
+
+output "containers" {
+  value       = { for container in azurerm_storage_container.containers : container.name => container }
+  description = "The containers within the Storage Account."
+  # module.MODULE_NAME.containers["CONTAINER_NAME"].id
+}
