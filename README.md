@@ -1,7 +1,12 @@
 # Azure Storage Account - Terraform Module
 
+[devcontainer]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/aztfm/terraform-azurerm-storage-account
+[registry]: https://registry.terraform.io/modules/aztfm/storage-account/azurerm/
+
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet.svg)](https://registry.terraform.io/modules/aztfm/storage-account/azurerm/)
+[![Dev Containers](https://img.shields.io/badge/Dev_Containers-VS_Code-blue?logo=linuxcontainers)][devcontainer]
+[![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet?logo=terraform&logoColor=white)][registry]
+![GitHub License](https://img.shields.io/github/license/aztfm/terraform-azurerm-storage-account)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-storage-account)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/aztfm/terraform-azurerm-storage-account?quickstart=1)
