@@ -96,3 +96,28 @@ variable "containers" {
     error_message = "The container access type must be one of private, blob, container."
   }
 }
+
+variable "file_shares" {
+  type = list(object({
+    name        = string
+    access_tier = optional(string, "Hot")
+    quota_in_gb = number
+  }))
+  description = "A list of file shares to create within the Storage Account."
+  default     = []
+
+  validation {
+    condition     = alltrue([for file_share in var.file_shares : contains(["Hot", "Cool", "TransactionOptimized", "Premium"], file_share.access_tier)])
+    error_message = "The access tier must be one of Hot, Cool, TransactionOptimized."
+  }
+
+  validation {
+    condition     = alltrue([for file_share in var.file_shares : file_share.access_tier != "Premium" || var.account_tier == "Premium"])
+    error_message = "The access tier Premium can only be used with Premium storage accounts."
+  }
+
+  validation {
+    condition     = alltrue([for file_share in var.file_shares : file_share.quota_in_gb >= 1 && file_share.quota_in_gb <= 5120])
+    error_message = "The quota must be between 1 and 5120."
+  }
+}

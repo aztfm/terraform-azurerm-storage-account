@@ -19,6 +19,14 @@ variables {
     name                  = "container2"
     container_access_type = "blob"
   }]
+  file_shares = [{
+    name        = "fileshare1"
+    quota_in_gb = 10
+    }, {
+    name        = "fileshare2"
+    access_tier = "Cool"
+    quota_in_gb = 20
+  }]
 }
 
 run "plan" {
@@ -106,6 +114,41 @@ run "plan" {
     condition     = azurerm_storage_container.containers[var.containers[1].name].container_access_type == var.containers[1].container_access_type
     error_message = "The access type of the second container is not as expected."
   }
+
+  assert {
+    condition     = length(azurerm_storage_share.file_shares) == length(var.file_shares)
+    error_message = "The number of Storage Account file shares input variables is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].name == var.file_shares[0].name
+    error_message = "The name of the first file share is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].quota_in_gb == var.file_shares[0].quota_in_gb
+    error_message = "The quota of the first file share is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].quota_in_gb == var.file_shares[0].quota_in_gb
+    error_message = "The quota of the first file share is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].name == var.file_shares[1].name
+    error_message = "The name of the second file share is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].access_tier == var.file_shares[1].access_tier
+    error_message = "The access tier of the second file share is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].quota_in_gb == var.file_shares[1].quota_in_gb
+    error_message = "The quota of the second file share is not as expected."
+  }
 }
 
 run "apply" {
@@ -121,6 +164,31 @@ run "apply" {
   assert {
     condition     = azurerm_storage_account.main.id == "${run.setup.resource_group_id}/providers/Microsoft.Storage/storageAccounts/${substr(replace(run.setup.workspace_id, "-", ""), 0, 24)}"
     error_message = "The Storage Account ID is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_account.main.name == substr(replace(run.setup.workspace_id, "-", ""), 0, 24)
+    error_message = "The Storage Account name is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[0].name].storage_account_id == azurerm_storage_account.main.id
+    error_message = "The first container's Storage Account ID is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_container.containers[var.containers[1].name].storage_account_id == azurerm_storage_account.main.id
+    error_message = "The first container's Storage Account ID is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].storage_account_id == azurerm_storage_account.main.id
+    error_message = "The first file share's Storage Account ID is not as expected."
+  }
+
+  assert {
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].storage_account_id == azurerm_storage_account.main.id
+    error_message = "The second file share's Storage Account ID is not as expected."
   }
 
   assert {
@@ -151,5 +219,10 @@ run "apply" {
   assert {
     condition     = output.containers == azurerm_storage_container.containers
     error_message = "The Storage Account containers output is not as expected."
+  }
+
+  assert {
+    condition     = output.file_shares == azurerm_storage_file_share.file_shares
+    error_message = "The Storage Account file shares output is not as expected."
   }
 }
