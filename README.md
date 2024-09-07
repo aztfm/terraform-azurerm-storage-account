@@ -1,7 +1,12 @@
 # Azure Storage Account - Terraform Module
 
+[devcontainer]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/aztfm/terraform-azurerm-storage-account
+[registry]: https://registry.terraform.io/modules/aztfm/storage-account/azurerm/
+
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet.svg)](https://registry.terraform.io/modules/aztfm/storage-account/azurerm/)
+[![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet?logo=terraform&logoColor=white)][registry]
+[![Dev Container](https://img.shields.io/badge/DevContainer-Open_with_VSCode-blue?logo=linuxcontainers)][devcontainer]
+![GitHub License](https://img.shields.io/github/license/aztfm/terraform-azurerm-storage-account)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-storage-account)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/aztfm/terraform-azurerm-storage-account?quickstart=1)
@@ -51,6 +56,7 @@ The module supports the next parameters:
 |min\_tls\_version|The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`.|`string`|`"TLS1_2"`|no|
 |public\_network\_access\_enabled|Controls whether data on the public internet is allowed to be read or written to the storage account.|`bool`|`true`|no|
 |containers|A list of containers to create within the Storage Account.|`list(object({}))`|`[]`|no|
+|file\_shares|A list of file shares to create within the Storage Account.|`list(object({}))`|`[]`|no|
 
 The `containers` supports the next parameters:
 
@@ -58,6 +64,14 @@ The `containers` supports the next parameters:
 | ---- | ----------- | :--: | :-----: | :------: |
 |name|The name of the Container which should be created within the Storage Account|`string`|n/a|yes|
 |container\_access\_type|The Access Level configured for this Container. Possible values are `blob`, `container` and `private`.|`string`|`private`|no|
+
+The `file_shares` supports the next parameters:
+
+| Name | Description | Type | Default | Required |
+| ---- | ----------- | :--: | :-----: | :------: |
+|name|The name of the File Share which should be created within the Storage Account|`string`|n/a|yes|
+|access\_tier|The Access Tier configured for this File Share. Possible values are `Hot`, `Cool`, `TransactionOptimized` and `Premium`.|`string`|`Hot`|no|
+|quota\_in\_gb|The maximum size of the File Share in GB. This must be between `1` and `5120` GB inclusive|`integer`|n/a|yes|
 
 ## :arrow_backward: Outputs
 
@@ -71,4 +85,5 @@ The module supports the next outputs:
 |location|The location of the Storage Account.|no|
 |tags|The tags of the Storage Account.|no|
 |containers|The containers within the Storage Account.|no|
+|file_shares|The file shares within the Storage Account.|no|
 <!-- END_TF_DOCS -->

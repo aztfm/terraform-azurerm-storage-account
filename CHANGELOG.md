@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD041 -->
-## 1.0.0 (XXXXXX XX, 20XX)
+## 1.0.0 (August 07, 2024)
 
 FEATURES:
 
@@ -15,3 +15,7 @@ FEATURES:
 - **New Parameter**: `containers`
 - **New Parameter**: `containers.name`
 - **New Parameter**: `containers.container_access_type`
+- **New Parameter**: `file_shares`
+- **New Parameter**: `file_shares.name`
+- **New Parameter**: `file_shares.access_tier`
+- **New Parameter**: `file_shares.quota_in_gb`

@@ -17,3 +17,11 @@ resource "azurerm_storage_container" "containers" {
   storage_account_name  = azurerm_storage_account.main.name
   container_access_type = each.value.container_access_type
 }
+
+resource "azurerm_storage_share" "file_shares" {
+  for_each             = { for share in var.file_shares : share.name => share }
+  name                 = each.value.name
+  storage_account_name = azurerm_storage_account.main.name
+  access_tier          = each.value.access_tier
+  quota                = each.value.quota_in_gb
+}

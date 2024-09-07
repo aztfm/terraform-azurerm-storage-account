@@ -35,7 +35,8 @@
             ],
             "settings": {
                 "cSpell.ignorePaths": [
-                    ".devcontainer/devcontainer.json"
+                    ".devcontainer/devcontainer.json",
+                    "LICENSE"
                 ],
                 "editor.bracketPairColorization.enabled": true,
                 "editor.formatOnSave": true,

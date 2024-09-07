@@ -28,3 +28,9 @@ output "containers" {
   description = "The containers within the Storage Account."
   # module.MODULE_NAME.containers["CONTAINER_NAME"].id
 }
+
+output "file_shares" {
+  value       = { for file_share in azurerm_storage_share.file_shares : file_share.name => file_share }
+  description = "The file shares within the Storage Account."
+  # module.MODULE_NAME.file_shares["FILE_SHARE_NAME"].id  
+}

@@ -1,0 +1,31 @@
+[
+    {
+        "Name": "name",
+        "Description": "The name of the File Share which should be created within the Storage Account",
+        "Type": "string",
+        "Default": "n/a",
+        "Required": "yes",
+        "Support": []
+    },
+    {
+        "Name": "access_tier",
+        "Description": "The Access Tier configured for this File Share. Possible values are",
+        "Type": "string",
+        "Default": "Hot",
+        "Required": "no",
+        "Support": [
+            "Hot",
+            "Cool",
+            "TransactionOptimized",
+            "Premium"
+        ]
+    },
+    {
+        "Name": "quota_in_gb",
+        "Description": "The maximum size of the File Share in GB. This must be between `1` and `5120` GB inclusive",
+        "Type": "integer",
+        "Default": "n/a",
+        "Required": "yes",
+        "Support": []
+    }
+]

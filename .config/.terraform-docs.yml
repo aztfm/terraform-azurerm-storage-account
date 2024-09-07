@@ -48,7 +48,8 @@ content: |
     {{ print "|" (ternary .Required "yes" "no") "|" }}
   {{ end }}{{ printf "\n" -}}
 
-  {{ template "table" dict "Resource" "containers" "File" ".config/container_parameters.json" }}{{ printf "\n" -}}
+  {{ template "table" dict "Resource" "containers" "File" ".config/container_parameters.json" }}
+  {{ template "table" dict "Resource" "file_shares" "File" ".config/file_share_parameters.json" }}{{ printf "\n" -}}
 
   ## :arrow_backward: Outputs
 
