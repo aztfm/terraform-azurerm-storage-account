@@ -126,7 +126,7 @@ run "plan" {
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].access_tier == var.file_shares[1].access_tier
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].access_tier == var.file_shares[0].access_tier
     error_message = "The access tier of the second file share is not as expected."
   }
 
@@ -182,12 +182,12 @@ run "apply" {
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].storage_account_id == azurerm_storage_account.main.id
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].resource_manager_id == "${azurerm_storage_account.main.id}/path/${var.file_shares[0].name}"
     error_message = "The first file share's Storage Account ID is not as expected."
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].storage_account_id == azurerm_storage_account.main.id
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].resource_manager_id == "${azurerm_storage_account.main.id}/path/${var.file_shares[1].name}"
     error_message = "The second file share's Storage Account ID is not as expected."
   }
 
@@ -222,7 +222,7 @@ run "apply" {
   }
 
   assert {
-    condition     = output.file_shares == azurerm_storage_file_share.file_shares
+    condition     = output.file_shares == azurerm_storage_share.file_shares
     error_message = "The Storage Account file shares output is not as expected."
   }
 }
