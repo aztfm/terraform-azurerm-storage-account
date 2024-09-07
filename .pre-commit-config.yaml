@@ -30,7 +30,6 @@ repos:
     hooks:
       - id: end-of-file-fixer
         name: Makes sure files end in a newline and only a newline
-        exclude: LICENSE
         exclude_types: [json]
 
       - id: check-merge-conflict
