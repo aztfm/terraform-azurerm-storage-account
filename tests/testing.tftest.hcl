@@ -126,12 +126,12 @@ run "plan" {
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].quota_in_gb == var.file_shares[0].quota_in_gb
-    error_message = "The quota of the first file share is not as expected."
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].access_tier == var.file_shares[1].access_tier
+    error_message = "The access tier of the second file share is not as expected."
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].quota_in_gb == var.file_shares[0].quota_in_gb
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].quota == var.file_shares[0].quota_in_gb
     error_message = "The quota of the first file share is not as expected."
   }
 
@@ -146,7 +146,7 @@ run "plan" {
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].quota_in_gb == var.file_shares[1].quota_in_gb
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].quota == var.file_shares[1].quota_in_gb
     error_message = "The quota of the second file share is not as expected."
   }
 }
