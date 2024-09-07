@@ -4,8 +4,8 @@
 [registry]: https://registry.terraform.io/modules/aztfm/storage-account/azurerm/
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![Dev Containers](https://img.shields.io/badge/Dev_Containers-VS_Code-blue?logo=linuxcontainers)][devcontainer]
 [![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet?logo=terraform&logoColor=white)][registry]
+[![Dev Container](https://img.shields.io/badge/DevContainer-Open_with_VSCode-blue?logo=linuxcontainers)][devcontainer]
 ![GitHub License](https://img.shields.io/github/license/aztfm/terraform-azurerm-storage-account)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-storage-account)
 
