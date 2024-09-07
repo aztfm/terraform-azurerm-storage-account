@@ -15,3 +15,7 @@ FEATURES:
 - **New Parameter**: `containers`
 - **New Parameter**: `containers.name`
 - **New Parameter**: `containers.container_access_type`
+- **New Parameter**: `file_shares`
+- **New Parameter**: `file_shares.name`
+- **New Parameter**: `file_shares.access_tier`
+- **New Parameter**: `file_shares.quota_in_gb`
