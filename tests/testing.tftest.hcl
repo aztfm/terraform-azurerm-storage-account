@@ -172,22 +172,22 @@ run "apply" {
   }
 
   assert {
-    condition     = azurerm_storage_container.containers[var.containers[0].name].storage_account_id == azurerm_storage_account.main.id
+    condition     = azurerm_storage_container.containers[var.containers[0].name].resource_manager_id == "${azurerm_storage_account.main.id}/blobServices/default/containers/${var.containers[0].name}"
     error_message = "The first container's Storage Account ID is not as expected."
   }
 
   assert {
-    condition     = azurerm_storage_container.containers[var.containers[1].name].storage_account_id == azurerm_storage_account.main.id
+    condition     = azurerm_storage_container.containers[var.containers[1].name].resource_manager_id == "${azurerm_storage_account.main.id}/blobServices/default/containers/${var.containers[1].name}"
     error_message = "The first container's Storage Account ID is not as expected."
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].resource_manager_id == "${azurerm_storage_account.main.id}/path/${var.file_shares[0].name}"
+    condition     = azurerm_storage_share.file_shares[var.file_shares[0].name].resource_manager_id == "${azurerm_storage_account.main.id}/fileServices/default/fileshares/${var.file_shares[0].name}"
     error_message = "The first file share's Storage Account ID is not as expected."
   }
 
   assert {
-    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].resource_manager_id == "${azurerm_storage_account.main.id}/path/${var.file_shares[1].name}"
+    condition     = azurerm_storage_share.file_shares[var.file_shares[1].name].resource_manager_id == "${azurerm_storage_account.main.id}/fileServices/default/fileshares/${var.file_shares[1].name}"
     error_message = "The second file share's Storage Account ID is not as expected."
   }
 
