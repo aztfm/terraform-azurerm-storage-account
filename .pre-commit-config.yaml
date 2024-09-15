@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.94.1
+    rev: v1.95.0
     hooks:
       - id: terraform_fmt
         name: Format Terraform code
@@ -42,7 +42,7 @@ repos:
         fail_fast: true
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.94.1
+    rev: v1.95.0
     hooks:
       - id: terraform_validate
         name: Validate Terraform code

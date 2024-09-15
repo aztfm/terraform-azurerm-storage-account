@@ -5,7 +5,7 @@
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet?logo=terraform&logoColor=white)][registry]
-[![Dev Container](https://img.shields.io/badge/DevContainer-Open_with_VSCode-blue?logo=linuxcontainers)][devcontainer]
+[![Dev Container](https://img.shields.io/badge/devcontainer-VSCode-blue?logo=linuxcontainers)][devcontainer]
 ![GitHub License](https://img.shields.io/github/license/aztfm/terraform-azurerm-storage-account)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-storage-account)
 
@@ -55,8 +55,17 @@ The module supports the next parameters:
 |https\_traffic\_only\_enabled|Allows https traffic only to storage service if set to true.|`bool`|`true`|no|
 |min\_tls\_version|The minimum supported TLS version for the storage account. Valid values are `TLS1_0`, `TLS1_1`, `TLS1_2`.|`string`|`"TLS1_2"`|no|
 |public\_network\_access\_enabled|Controls whether data on the public internet is allowed to be read or written to the storage account.|`bool`|`true`|no|
+|network\_rules|Network rules to apply to the storage account.|`object({})`|n/a|yes|
 |containers|A list of containers to create within the Storage Account.|`list(object({}))`|`[]`|no|
 |file\_shares|A list of file shares to create within the Storage Account.|`list(object({}))`|`[]`|no|
+
+The `network_rules` supports the next parameters:
+
+| Name | Description | Type | Default | Required |
+| ---- | ----------- | :--: | :-----: | :------: |
+|virtual\_network\_subnet\_ids|The list of Subnet IDs to associate with the File Share. This must be a list of valid Subnet IDs.|`list(string)`|`[]`|no|
+|ip\_rules|The list of IP addresses that are allowed to access the File Share. This must be a list of valid IP addresses.|`list(string)`|`[]`|no|
+|bypass|Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are `AzureServices`, `Logging`, `Metrics` and `None`.|`list(string)`|`[]`|no|
 
 The `containers` supports the next parameters:
 
