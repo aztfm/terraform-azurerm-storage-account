@@ -83,6 +83,35 @@ variable "public_network_access_enabled" {
   default     = true
 }
 
+variable "network_rules" {
+  type = object({
+    virtual_network_subnet_ids = optional(list(string), [])
+    ip_rules                   = optional(list(string), [])
+    bypass                     = optional(list(string), [])
+  })
+  description = "Network rules to apply to the storage account."
+
+  validation {
+    condition     = alltrue([for subnet_id in var.network_rules.virtual_network_subnet_ids : can(regex("^/subscriptions/[^/]+/resourceGroups/[^/]+/providers/Microsoft.Network/virtualNetworks/[^/]+/subnets/[^/]+$", subnet_id))])
+    error_message = "The virtual network subnet IDs must be valid Azure Resource Manager subnet IDs."
+  }
+
+  validation {
+    condition     = alltrue([for ip_rule in var.network_rules.ip_rules : can(cidrnetmask("${ip_rule}/32"))])
+    error_message = "The IP rules must be valid CIDR blocks."
+  }
+
+  validation {
+    condition     = length(var.network_rules.ip_rules) <= 30
+    error_message = "The IP rules must be less than or equal to 30."
+  }
+
+  validation {
+    condition     = alltrue([for bypass in var.network_rules.bypass : contains(["AzureServices", "Logging", "Metrics", "None"], bypass)])
+    error_message = "The bypass rules must be one or more of AzureServices, Logging, Metrics."
+  }
+}
+
 variable "containers" {
   type = list(object({
     name                  = string

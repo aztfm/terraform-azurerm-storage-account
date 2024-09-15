@@ -9,6 +9,17 @@ resource "azurerm_storage_account" "main" {
   https_traffic_only_enabled    = var.https_traffic_only_enabled
   min_tls_version               = var.min_tls_version
   public_network_access_enabled = var.public_network_access_enabled
+
+  dynamic "network_rules" {
+    for_each = var.network_rules != null ? [""] : []
+
+    content {
+      default_action             = "Deny"
+      virtual_network_subnet_ids = network_rules.value.virtual_network_subnet_ids
+      ip_rules                   = network_rules.value.ip_rules
+      bypass                     = network_rules.value.bypass
+    }
+  }
 }
 
 resource "azurerm_storage_container" "containers" {

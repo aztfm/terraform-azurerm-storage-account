@@ -1,4 +1,13 @@
 <!-- markdownlint-disable MD041 -->
+## 1.1.0 (XXXXXX XX, 2024)
+
+FEATURES:
+
+- **New Parameter**: `network_rules`
+- **New Parameter**: `network_rules.virtual_network_subnet_ids`
+- **New Parameter**: `network_rules.ip_rules`
+- **New Parameter**: `network_rules.bypass`
+
 ## 1.0.0 (August 07, 2024)
 
 FEATURES:

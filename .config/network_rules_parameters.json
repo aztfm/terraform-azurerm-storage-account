@@ -1,0 +1,31 @@
+[
+    {
+        "Name": "virtual_network_subnet_ids",
+        "Description": "The list of Subnet IDs to associate with the File Share. This must be a list of valid Subnet IDs.",
+        "Type": "list(string)",
+        "Default": "[]",
+        "Required": "no",
+        "Support": []
+    },
+    {
+        "Name": "ip_rules",
+        "Description": "The list of IP addresses that are allowed to access the File Share. This must be a list of valid IP addresses.",
+        "Type": "list(string)",
+        "Default": "[]",
+        "Required": "no",
+        "Support": []
+    },
+    {
+        "Name": "bypass",
+        "Description": "Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are",
+        "Type": "list(string)",
+        "Default": "[]",
+        "Required": "no",
+        "Support": [
+            "AzureServices",
+            "Logging",
+            "Metrics",
+            "None"
+        ]
+    }
+]
